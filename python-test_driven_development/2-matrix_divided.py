@@ -23,16 +23,18 @@ def matrix_divided(matrix, div):
         A new matrix representing the result of the division.
     """
     msg = "matrix must be a matrix (list of lists) of integers/floats"
-    if (not isinstance(matrix, list) or matrix == [] or
-            not all(isinstance(row, list) for row in matrix) or
-            not all((isinstance(ele, int) or isinstance(ele, float))
-                    and not isinstance(ele, bool)
-                    for row in matrix for ele in row)):
+    if not isinstance(matrix, list) or matrix == []:
         raise TypeError(msg)
-    if not all(len(row) == len(matrix[0]) for row in matrix):
-        raise TypeError("Each row of the matrix must have the same size")
-    if ((not isinstance(div, int) and not isinstance(div, float))
-            or isinstance(div, bool)):
+    for row in matrix:
+        if not isinstance(row, list):
+            raise TypeError(msg)
+        for ele in row:
+            if type(ele) not in (int, float):
+                raise TypeError(msg)
+    for row in matrix:
+        if len(row) != len(matrix[0]):
+            raise TypeError("Each row of the matrix must have the same size")
+    if type(div) not in (int, float):
         raise TypeError("div must be a number")
     if div == 0:
         raise ZeroDivisionError("division by zero")
