@@ -14,3 +14,4 @@ HTTP requests in Python with `urllib` and `requests`.
 | 7-error_code.py | Print error codes >= 400 with requests |
 | 8-json_api.py | Search API: POST a letter and parse JSON |
 | 10-my_github.py | Display your GitHub id with Basic Auth |
+| 100-github_commits.py | 10 latest commits of a repository |
